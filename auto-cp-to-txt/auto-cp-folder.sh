@@ -97,19 +97,23 @@ else
     done
 fi
 
-# --- INIT ROTATION VARIABLES ---
-BASENAME="${ORIGINAL_OUTPUT_FILE%.*}"
-EXTENSION="${ORIGINAL_OUTPUT_FILE##*.}"
-if [ "$BASENAME" == "$ORIGINAL_OUTPUT_FILE" ]; then
+# --- INIT OUTPUT DIRECTORY & ROTATION VARIABLES ---
+OUTPUT_DIR="outputs"
+mkdir -p "$OUTPUT_DIR"
+
+FILE_NAME=$(basename "$ORIGINAL_OUTPUT_FILE")
+BASENAME="${FILE_NAME%.*}"
+EXTENSION="${FILE_NAME##*.}"
+if [ "$BASENAME" == "$FILE_NAME" ]; then
     EXTENSION="txt"
 fi
 
-CURRENT_OUTPUT_FILE="$ORIGINAL_OUTPUT_FILE"
+CURRENT_OUTPUT_FILE="$OUTPUT_DIR/${BASENAME}.${EXTENSION}"
 CHUNK_INDEX=0
-# ----------------------------------------------
+# --------------------------------------------------
 
 # Define a list of patterns to ignore by default
-IGNORE_PATTERNS=(".git" "node_modules" ".idea" ".vscode" "__pycache__" ".DS_Store" "venv" "build" "dist" "package-lock.json")
+IGNORE_PATTERNS=(".git" "node_modules" ".idea" ".vscode" "__pycache__" ".DS_Store" "venv" "build" "dist" "package-lock.json" "coverage" ".venv")
 
 # Clear the first output file
 > "$CURRENT_OUTPUT_FILE"
@@ -189,7 +193,7 @@ find "$SOURCE_DIR" -type f | while read -r file; do
 
         if [ "$CURRENT_TOTAL_LINES" -ge "$MAX_TOTAL_LINES_PER_OUTPUT" ]; then
             CHUNK_INDEX=$((CHUNK_INDEX + 1))
-            CURRENT_OUTPUT_FILE="${BASENAME}(${CHUNK_INDEX}).${EXTENSION}"
+            CURRENT_OUTPUT_FILE="$OUTPUT_DIR/${BASENAME}(${CHUNK_INDEX}).${EXTENSION}"
             
             > "$CURRENT_OUTPUT_FILE"
             echo "Limit reached ($MAX_TOTAL_LINES_PER_OUTPUT lines). Switched to new file: $CURRENT_OUTPUT_FILE"
@@ -250,7 +254,7 @@ done
 
 echo "---------------------------------------------------"
 echo "Done! The following files were created:"
-ls -1 "${BASENAME}"*"${EXTENSION}"
+ls -1 "$OUTPUT_DIR/${BASENAME}"*"${EXTENSION}"
 echo "---------------------------------------------------"
 echo " "
 
