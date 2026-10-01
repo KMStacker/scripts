@@ -10,6 +10,11 @@ A collection of utility and automation scripts. Each script is organized into it
 scripts/
 ├── auto-cp-to-txt/
 │   └── auto-cp-folder.sh
+├── text-search/
+│   ├── all_text_search.py
+│   └── pdf_search.py
+├── wallpaper-taskbar-rescaler/
+│   └── wallpaper_taskbar_rescaler.py
 └── README.md
 ```
 
