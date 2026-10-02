@@ -76,6 +76,53 @@ All generated texts are saved automatically into `outputs/`.
 
 ---
 
+### 2. text-search
+
+CLI tools for searching text occurrences inside documents within a target directory. Results are aggregated and sorted by match frequency in descending order.
+
+#### Scripts
+- **`all_text_search.py`**: Searches across both `.pdf` and `.txt` files.
+- **`pdf_search.py`**: Dedicated search tool optimized specifically for `.pdf` files.
+
+#### Features
+- **Frequency Ranking**: Counts total occurrences of the search term per file and displays highest matches first.
+- **Output Flexibility**: Supports printing directly to standard output or exporting results to a UTF-8 text file.
+- **Formatted Display**: Truncates long filenames to preserve clean tabular alignment in terminal outputs.
+
+#### Requirements
+- Python 3.x
+- **PyMuPDF** (`fitz`) library for PDF text extraction:
+  ```bash
+  pip install PyMuPDF
+
+#### Usage Instructions
+- Navigate to the directory:
+```bash
+cd text-search
+```
+
+- Run the script with the required arguments:
+```bash
+python all_text_search.py <path> <mode> "<search_term>"
+python pdf_search.py <path> <mode> "<search_term>"
+```
+
+- Arguments:
+  - `<path>`: The path to the directory containing the documents.
+  - `<mode>`: Output target.
+    - `<print>`: Displays output directly in the console.
+    - `<text>`: Saves output to a .txt file in the current working directory.
+  - `"<search_term>"`: Word or phrase to search for (case-insensitive).
+
+- Examples:
+```bash
+# Print occurrences of 'invoice' in both PDFs and TXT files
+python all_text_search.py /c/documents/reports print "invoice"
+
+# Export occurrences of 'machine learning' in PDFs to a text file
+python pdf_search.py /c/documents/papers txt "machine learning"
+```
+
 ## Adding New Scripts
 
 1. Create a new directory for the script: `mkdir <script-name>`
