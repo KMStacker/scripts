@@ -123,6 +123,51 @@ python all_text_search.py /c/documents/reports print "invoice"
 python pdf_search.py /c/documents/papers txt "machine learning"
 ```
 
+---
+
+### 3. wallpaper-taskbar-rescaler
+
+A Python utility to rescale desktop wallpapers for Windows 11, compensating for the taskbar height and display scaling so that no part of the wallpaper is hidden behind the taskbar.
+
+#### Features
+- Taskbar Compensation: Calculates physical taskbar height based on display resolution and Windows scaling factor, resizing the image to sit cleanly above the taskbar.
+
+- High-Quality Resampling: Uses Pillow's Lanczos resampling to prevent blurriness and visual artifacts during scaling.
+
+- Clean Background Canvas: Places the resized wallpaper onto a solid black base matching the full display resolution.
+
+- Automatic Dependency Setup: Automatically installs the pillow library via pip if it is not found in the current Python environment.
+
+#### Requirements
+- Python 3.x
+
+- Pillow (PIL): Automatically installed by the script if missing, or install manually:
+```bash
+pip install pillow
+```
+
+#### Usage Instructions
+- Navigate to the directory:
+```bash
+cd wallpaper-taskbar-rescaler
+```
+- Run the script with the required arguments:
+```bash
+python wallpaper_taskbar_rescaler.py <image_path> <width> <height> <scale%>
+```
+- Arguments:
+  - `<image_path>`: File path to the wallpaper image (e.g., .png, .jpg).
+  - `<width>`: Display screen width in pixels (e.g., 1920, 2880).
+  - `<height>`: Display screen height in pixels (e.g., 1080, 1440).
+  - `<scale%>`: Windows display scale percentage without the percent sign (e.g., 100, 125, 150, 175).
+- Example:
+```bash
+python wallpaper_taskbar_rescaler.py wallpaper.png 2880 1800 175
+```
+- The processed image is saved in the same directory as the source image with the suffix `_<width>x<height>_fixed.<ext>`.
+
+---
+
 ## Adding New Scripts
 
 1. Create a new directory for the script: `mkdir <script-name>`
