@@ -12,8 +12,10 @@ scripts/
 │   └── auto-cp-folder.sh
 ├── text-search/
 │   ├── all_text_search.py
-│   └── pdf_search.py
+│   ├── pdf_search.py
+│   └── requirements.txt
 ├── wallpaper-taskbar-rescaler/
+│   ├── requirements.txt
 │   └── wallpaper_taskbar_rescaler.py
 └── README.md
 ```
@@ -93,19 +95,20 @@ CLI tools for searching text occurrences inside documents within a target direct
 - Python 3.x
 - **PyMuPDF** (`fitz`) library for PDF text extraction:
   ```bash
-  pip install PyMuPDF
+  pip install -r requirements.txt
+  ```
 
 #### Usage Instructions
 - Navigate to the directory:
-```bash
-cd text-search
-```
+  ```bash
+  cd text-search
+  ```
 
 - Run the script with the required arguments:
-```bash
-python all_text_search.py <path> <mode> "<search_term>"
-python pdf_search.py <path> <mode> "<search_term>"
-```
+  ```bash
+  python all_text_search.py <path> <mode> "<search_term>"
+  python pdf_search.py <path> <mode> "<search_term>"
+  ```
 
 - Arguments:
   - `<path>`: The path to the directory containing the documents.
@@ -115,13 +118,13 @@ python pdf_search.py <path> <mode> "<search_term>"
   - `"<search_term>"`: Word or phrase to search for (case-insensitive).
 
 - Examples:
-```bash
-# Print occurrences of 'invoice' in both PDFs and TXT files
-python all_text_search.py /c/documents/reports print "invoice"
+  ```bash
+  # Print occurrences of 'invoice' in both PDFs and TXT files
+  python all_text_search.py /c/documents/reports print "invoice"
 
-# Export occurrences of 'machine learning' in PDFs to a text file
-python pdf_search.py /c/documents/papers txt "machine learning"
-```
+  # Export occurrences of 'machine learning' in PDFs to a text file
+  python pdf_search.py /c/documents/papers txt "machine learning"
+  ```
 
 ---
 
@@ -142,28 +145,28 @@ A Python utility to rescale desktop wallpapers for Windows 11, compensating for 
 - Python 3.x
 
 - Pillow (PIL): Automatically installed by the script if missing, or install manually:
-```bash
-pip install pillow
-```
+  ```bash
+  pip install -r requirements.txt
+  ```
 
 #### Usage Instructions
 - Navigate to the directory:
-```bash
-cd wallpaper-taskbar-rescaler
-```
+  ```bash
+  cd wallpaper-taskbar-rescaler
+  ```
 - Run the script with the required arguments:
-```bash
-python wallpaper_taskbar_rescaler.py <image_path> <width> <height> <scale%>
-```
+  ```bash
+  python wallpaper_taskbar_rescaler.py <image_path> <width> <height> <scale%>
+  ```
 - Arguments:
   - `<image_path>`: File path to the wallpaper image (e.g., .png, .jpg).
   - `<width>`: Display screen width in pixels (e.g., 1920, 2880).
   - `<height>`: Display screen height in pixels (e.g., 1080, 1440).
   - `<scale%>`: Windows display scale percentage without the percent sign (e.g., 100, 125, 150, 175).
 - Example:
-```bash
-python wallpaper_taskbar_rescaler.py wallpaper.png 2880 1800 175
-```
+  ```bash
+  python wallpaper_taskbar_rescaler.py wallpaper.png 2880 1800 175
+  ```
 - The processed image is saved in the same directory as the source image with the suffix `_<width>x<height>_fixed.<ext>`.
 
 ---
