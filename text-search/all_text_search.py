@@ -83,10 +83,14 @@ if __name__ == "__main__":
         # make filename based on folder name and search term
         safe_term = search_term.lower().replace(" ", "-")
         safe_filename = f"{folder_name}_{safe_term}.txt"
+
+        output_dir = "outputs"
+        os.makedirs(output_dir, exist_ok=True)
+        output_filepath = os.path.join(output_dir, safe_filename)
         
         try:
-            with open(safe_filename, "w", encoding="utf-8") as file:
+            with open(output_filepath, "w", encoding="utf-8") as file:
                 file.write(final_output)
-            print(f"Results successfully saved to: {safe_filename}")
+            print(f"Results successfully saved to: {output_filepath}")
         except Exception as e:
             print(f"Error saving to file: {e}")
