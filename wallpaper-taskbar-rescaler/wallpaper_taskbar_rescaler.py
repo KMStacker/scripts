@@ -55,8 +55,14 @@ def process_image(image_path, screen_width, screen_height, scale_percent):
         new_background.paste(img_resized, (0, 0))
         
         # 4. Save the file
-        filename, ext = os.path.splitext(image_path)
-        output_path = f"{filename}_{screen_width}x{screen_height}_fixed{ext}"
+        output_dir = "outputs"
+        os.makedirs(output_dir, exist_ok=True)
+
+        file_name_only = os.path.basename(image_path)
+        base_name, ext = os.path.splitext(file_name_only)
+        output_filename = f"{base_name}_{screen_width}x{screen_height}_fixed{ext}"
+        output_path = os.path.join(output_dir, output_filename)
+
         new_background.save(output_path, quality=95)
         
         print(f"Done! Saved as: {output_path}")
