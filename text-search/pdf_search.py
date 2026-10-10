@@ -66,9 +66,13 @@ if __name__ == "__main__":
         print(final_output)
     elif output_mode == "txt":
         safe_filename = search_term.lower().replace(" ", "-") + ".txt"
+        output_dir = "outputs"
+        os.makedirs(output_dir, exist_ok=True)
+        output_filepath = os.path.join(output_dir, safe_filename)
+
         try:
-            with open(safe_filename, "w", encoding="utf-8") as file:
+            with open(output_filepath, "w", encoding="utf-8") as file:
                 file.write(final_output)
-            print(f"Results successfully saved to: {safe_filename}")
+            print(f"Results successfully saved to: {output_filepath}")
         except Exception as e:
             print(f"Error saving to file: {e}")
