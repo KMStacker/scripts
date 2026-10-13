@@ -114,7 +114,7 @@ CLI tools for searching text occurrences inside documents within a target direct
   - `<path>`: The path to the directory containing the documents.
   - `<mode>`: Output target.
     - `<print>`: Displays output directly in the console.
-    - `<text>`: Saves output to a .txt file in the current working directory.
+    - `<text>`: Saves output to a .txt file in the outputs/ directory.
   - `"<search_term>"`: Word or phrase to search for (case-insensitive).
 
 - Examples:
@@ -167,7 +167,7 @@ A Python utility to rescale desktop wallpapers for Windows 11, compensating for 
   ```bash
   python wallpaper_taskbar_rescaler.py wallpaper.png 2880 1800 175
   ```
-- The processed image is saved in the same directory as the source image with the suffix `_<width>x<height>_fixed.<ext>`.
+- The processed image is saved into the outputs/ directory with the suffix `_<width>x<height>_fixed.<ext>`.
 
 ---
 
